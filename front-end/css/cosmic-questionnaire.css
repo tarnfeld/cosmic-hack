@@ -19,5 +19,63 @@
  * Footer
  */
 .footer {
-
+    margin-top: 30px;
 }
+
+/**
+ * Questionnaire
+ */
+
+.questionnaire-progress {
+    margin: 30px 0;
+}
+    .questionnaire-progress .progress,
+    .questionnaire-progress .progress-bar {
+        height: 40px;
+        font-size: 20px;
+        line-height: 1.9;
+        font-weight: bold;
+    }
+    .questionnaire-progress .progress-bar {
+        background-color: #E2378D;
+    }
+
+.question {
+    margin-top: 40px;
+}
+    .question .qnumber {
+        font-weight: bold;
+        color: #E2378D;
+    }
+    .question .hint {
+        padding: 0 0 10px 60px;
+        font-size: 16px;
+        color: #999;
+    }
+    .question .well {
+        margin-top: 10px;
+    }
+    .question .canvas {
+        margin: 0;
+        padding: 0;
+    }
+
+/**
+ * Canvas
+ */
+
+.swatches {
+    padding: 0 0 0 29px;
+}
+    .swatches li {
+        list-style-type: 0;
+        display: inline-block;
+        margin: 0;
+    }
+    .swatches .color-swatch {
+        width: 80px;
+        height: 80px;
+        background: red;
+        display: inline-block;
+        border-radius: 40px;
+    }

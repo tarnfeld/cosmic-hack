@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css" />
+        <link rel="stylesheet" href="css/jumbotron-narrow.css" />
+        <link rel="stylesheet" href="css/cosmic-questionnaire.css" />
+
+        <!-- JS -->
+        <script data-main="js/index" src="bower_components/requirejs/require.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div class="pull-right">
+                    <a href="#" class="btn btn-default">Skip</a>
+                </div>
+                <h3 class="text-muted"><strong>COSMIC</strong> Feedback Questionnaire</h3>
+            </div>
+
+            <div class="questionnaire-progress">
+                <div class="progress progress-striped active">
+                  <div class="progress-bar progress-bar-success" style="width: 80%;">
+                    60%
+                  </div>
+                </div>
+            </div>
+
+            <div class="question">
+                <h2><span class="qnumber">#01</span> Would you like to pass on any messages to your doctor and nurse?</h2>
+                <div class="hint">
+                    <strong>Help!</strong> You can use the white board below to draw a picture or send a message.
+                </div>
+
+                <div class="well">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="panel panel-default canvas">
+                                <div class="panel-body">
+                                    <canvas />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="panel panel-default canvas">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Pick a colour</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <ul class="swatches">
+                                        <li><a href="#" class="color-swatch black">BLACK</a></li>
+                                        <li><a href="#" class="color-swatch white">WHITE</a></li>
+                                        <li><a href="#" class="color-swatch red">RED</a></li>
+                                        <li><a href="#" class="color-swatch green">GREEN</a></li>
+                                        <li><a href="#" class="color-swatch blue">BLUE</a></li>
+                                        <li><a href="#" class="color-swatch yellow">YELLOW</a></li>
+                                        <li><a href="#" class="color-swatch purple">PURPLE</a></li>
+                                        <li><a href="#" class="color-swatch brown">BROWN</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <p>&nbsp;</p>
+            </div>
+
+        </div>
+    </body>
+</html>
