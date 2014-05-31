@@ -29,7 +29,7 @@ app = bottle.Bottle()
 # Test with:
 # curl -X GET http://localhost:8080/questionnaire
 
-def save_entity_from_request_json(entity_class, required=[], optional=[], from_url={}, enum_map={}):
+def save_entity_from_request_json(entity_class, required=[], optional=[], repeated=[], from_url={}, enum_map={}):
 	request_data = request.json
 
 	entity = entity_class()
@@ -53,6 +53,17 @@ def save_entity_from_request_json(entity_class, required=[], optional=[], from_u
 				enum = enum_map[key]
 				value = enum(getattr(enum, value))
 			setattr(entity, key, value)
+
+	for key in repeated:
+		if key in request_data:
+			values = request_data[key]
+			entity_values = []
+			for value in values:
+				if key in enum_map:
+					enum = enum_map[key]
+					value = enum(getattr(enum, value))
+				entity_values.append(value)
+			setattr(entity, key, entity_values)
 
 	# Save
 	key = entity.put()
@@ -148,10 +159,14 @@ def answersGET(question_id):
 	
 @app.put('/questionnaire')
 def questionnairePUT():
-	return succesful_response ({
-		"id": 1,
-		"label": "Hai",
-	})
+	try:
+		return succesful_response(save_entity_from_request_json(
+			Questionnaire,
+			required = ['name'],
+			repeated = ['section_id']
+		))
+	except Exception as e:
+		return fail_response(e)
 
 @app.put('/questionnaire/<questionnaire_id>/section')
 def sectionPUT(questionnaire_id):
