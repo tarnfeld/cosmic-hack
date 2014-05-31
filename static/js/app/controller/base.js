@@ -1,6 +1,6 @@
 define(function () {
-    function controllerBase(id) {
-        this.id = id;
+    function controllerBase(template) {
+        this.template = template;
     }
 
     controllerBase.prototype = {
@@ -9,9 +9,6 @@ define(function () {
         },
         init: function (bodyDom, submitCallback) {
 
-        },
-        renderHtml: function () {
-            
         }
     };
 

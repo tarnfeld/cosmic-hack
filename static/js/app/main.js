@@ -14,11 +14,10 @@ define(function (require) {
     var homeTemplate = $('#home-template').html();
     $('#mustache-container').html(mustache.render(homeTemplate, queryDict));
 
-    var questions = [];
+    var questions = [],
+        total_qs = 0;
 
     function nextQuestion(q) {
-        console.log(q);
-
         var questionTypeMapping = {
             "CHOICE": "./controller/answerMaze",
             "TEXT": "./controller/answerText",
@@ -32,14 +31,18 @@ define(function (require) {
 
         var $body = $('body');
         require([questionTypeMapping[q["question_type"]]], function(controller) {
-            controller.init($body, function() {
+            q.question_no = total_qs - questions.length;
+            $('#mustache-container').html(mustache.render($(controller.template).html(), q));
+
+            submitURL = "/question/" + q.id + "/answer";
+            controller.init($body, submitURL, parseInt(queryDict["patient"]), function() {
                 if (questions.length > 0) {
                     nextQuestion(questions.shift());
+                } else {
+                    var homeTemplate = $('#thanks-template').html();
+                    $('#mustache-container').html(mustache.render(homeTemplate, queryDict));
                 }
             });
-
-            var template = controller.renderHtml();
-            $('#mustache-container').html(mustache.render(template, q));
         });
     }
 
@@ -60,6 +63,7 @@ define(function (require) {
                         });
                     });
 
+                    total_qs = questions.length;
                     nextQuestion(questions.shift());
                 });
             });

@@ -10,15 +10,11 @@ define([
     ],
     function (base, PaintCanvas) {
 
-        var controllerMaze = new base('Controller Maze');
+        var controllerMaze = new base("#question-maze");
 
         controllerMaze.init = function(jDocument, submitCallback) {
             this.initMaze(jDocument);
             this.submitCallback = submitCallback;
-        };
-
-        controllerMaze.renderHtml = function() {
-            return $('#question-maze').html();
         };
 
         controllerMaze.initMaze = function(jDocument) {

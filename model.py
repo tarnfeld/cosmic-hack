@@ -45,4 +45,4 @@ class Answer(ndb.Model):
 	answered = ndb.DateTimeProperty(auto_now_add=True, required=True)
 	answer_type = msgprop.EnumProperty(AnswerType, required=True)
 	answer = ndb.StringProperty(required=False)
-	drawing = ndb.StringProperty(required=False)
+	drawing = ndb.StringProperty(required=False, indexed=False)
