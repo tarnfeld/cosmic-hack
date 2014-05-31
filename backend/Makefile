@@ -1,5 +1,8 @@
-ll:: modules
+all:: modules
 clean:: clean-modules
+
+clean::
+	-find . -name \*.pyc -delete
 
 modules: requirements.txt
 	-rm -rf modules

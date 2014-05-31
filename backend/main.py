@@ -4,6 +4,8 @@ sys.path.append('modules')
 from bottle import route, template, get, post, request, response, redirect, app
 import bottle
 
+import model
+
 def succesful_response(data):
 	return {
 		"status": "ok",
