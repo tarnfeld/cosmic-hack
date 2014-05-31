@@ -1,5 +1,5 @@
 import sys
-sys.path.append('lib')
+sys.path.append('modules')
 
 from bottle import route, template, get, post, request, response, redirect, app
 import bottle
