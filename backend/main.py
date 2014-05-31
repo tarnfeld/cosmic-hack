@@ -6,6 +6,7 @@ import bottle
 import json
 from time import mktime
 from datetime import datetime
+import traceback
 
 from model import *
 
@@ -31,6 +32,9 @@ app = bottle.Bottle()
 
 def save_entity_from_request_json(entity_class, required=[], optional=[], repeated=[], from_url={}, enum_map={}):
 	request_data = request.json
+
+	if request_data is None:
+		raise Exception('No JSON data provided (did you forget a content-type header?)')
 
 	entity = entity_class()
 
@@ -119,7 +123,7 @@ def answerPUT(question_id):
 		return succesful_response(save_entity_from_request_json(
 			Answer,
 			required = ['patient_id', 'answer_type'],
-			optional = ['selection', 'drawing'],
+			optional = ['answer', 'drawing'],
 			enum_map = {'answer_type': AnswerType},
 			from_url = {
 				'question_id': int(question_id)
@@ -131,21 +135,25 @@ def answerPUT(question_id):
 @app.get('/question/<question_id>/answers')
 def answersGET(question_id):
 	question_id = int(question_id)
-	return succesful_response ({
-		"question": {
-			#Question object
-		},
-		"answers": [
-			{
-				"id": 1223435,
-				"patient_id": 1,
-				"question_id": question_id,
-				"answered_time_millis": 123456779,
-				"answer_type": 	"SELECTION",
-				"selection": "Foo"
-			}
-		]
+
+	key = ndb.Key(Question, question_id)
+	question = key.get()
+	if question is None:
+		return fail_response('Question not found.')
+
+	answers = Answer.query(Answer.question_id == question.key.integer_id()).fetch()
+
+	question = entity_to_dict(question, enum_map = {
+		'question_type': QuestionType
 	})
+	question['answers'] = map(
+		lambda e: entity_to_dict(e, enum_map = {
+			'answer_type': AnswerType
+		}),
+		answers
+	)
+
+	return succesful_response(question)
 
 @app.put('/questionnaire')
 def questionnairePUT():
@@ -187,9 +195,11 @@ def questionPUT(questionnaire_id, section_id):
 			}
 		))
 	except Exception as e:
-		return fail_response(e)
+		return fail_response(tracebackself.format_exc(e))
 
 app.run(server='gae')
 
 # Questionnaire: 4644337115725824
 # Section: 5770237022568448
+# Question: 4993981813358592
+# Answer: 6119881720201216
