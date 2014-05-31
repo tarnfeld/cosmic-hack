@@ -100,23 +100,18 @@ def questionnairesGET():
 @app.get('/questionnaire/<questionnaire_id>')
 def questionnaireGET(questionnaire_id):
 	questionnaire_id = int(questionnaire_id)
-	return succesful_response ({
-		"id": questionnaire_id,
-		"name": "Some questionnaire.",
-		"sections": [
-			{
-				"name": "Section 1",	
-				"questions": [
-					{
-						"id": 1,
-						"type": "FREE_TEXT",
-						"question": "How do you feel",
-						"hint_text": "Not great."
-					}
-				]
-			},
-		]
-	})
+
+	key = ndb.Key(Questionnaire, questionnaire_id)
+	questionnaire = key.get()
+	if questionnaire is None:
+		return fail_response('Questionnaire not found.')
+
+	sections = QuestionSection.query(QuestionSection.questionnaire_id == questionnaire.key.integer_id()).fetch()
+
+	questionnaire = entity_to_dict(questionnaire)
+	questionnaire['sections'] = map(entity_to_dict, sections)
+
+	return succesful_response(questionnaire)
 
 @app.put('/question/<question_id>/answer')	
 def answerPUT(question_id):
@@ -157,8 +152,7 @@ def questionnairePUT():
 	try:
 		return succesful_response(save_entity_from_request_json(
 			Questionnaire,
-			required = ['name'],
-			repeated = ['section_ids']
+			required = ['name']
 		))
 	except Exception as e:
 		return fail_response(e)
@@ -169,7 +163,6 @@ def sectionPUT(questionnaire_id):
 		return succesful_response(save_entity_from_request_json(
 			QuestionSection,
 			required = ['label'],
-			repeated = ['question_ids'],
 			from_url = {
 				'questionnaire_id': int(questionnaire_id)
 			}
@@ -197,3 +190,6 @@ def questionPUT(questionnaire_id, section_id):
 		return fail_response(e)
 
 app.run(server='gae')
+
+# Questionnaire: 4644337115725824
+# Section: 5770237022568448
