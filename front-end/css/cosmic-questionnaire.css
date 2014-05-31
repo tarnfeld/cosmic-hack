@@ -133,7 +133,18 @@
 /**
  * Maze styling
  */
-.maze {
+.maze-wrap {
+    float: left;
     margin-left: 20px;
     margin-right: 20px;
+    position: relative;
+}
+
+.maze-wrap .win {
+    position: absolute;
+    right: 3px;
+    bottom: 8px;
+    width: 30px;
+    height: 30px;
+    background: black;
 }
