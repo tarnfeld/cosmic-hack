@@ -1,6 +1,8 @@
 from google.appengine.ext import ndb
 from google.appengine.ext.ndb import msgprop
+
 from protorpc import messages
+
 
 class QuestionType(messages.Enum):
 	TEXT = 1

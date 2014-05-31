@@ -1,14 +1,16 @@
 import sys
 sys.path.append('modules')
 
-from bottle import route, template, get, post, request, response, redirect, app
-import bottle
-import json
-from time import mktime
 from datetime import datetime
-import traceback
+from time import mktime
 
-from model import *
+from google.appengine.ext import ndb
+
+from bottle import request
+import bottle
+from model import Answer, Patient, Questionnaire, QuestionSection, AnswerType, Question, \
+	QuestionType
+
 
 def succesful_response(data):
 	return {
@@ -26,9 +28,6 @@ def fail_response(msg):
 	}
 
 app = bottle.Bottle()
-
-# Test with:
-# curl -X GET http://localhost:8080/questionnaire
 
 def save_entity_from_request_json(entity_class, required=[], optional=[], repeated=[], from_url={}, enum_map={}):
 	request_data = request.json
@@ -195,11 +194,6 @@ def questionPUT(questionnaire_id, section_id):
 			}
 		))
 	except Exception as e:
-		return fail_response(tracebackself.format_exc(e))
+		return fail_response(e)
 
 app.run(server='gae')
-
-# Questionnaire: 4644337115725824
-# Section: 5770237022568448
-# Question: 4993981813358592
-# Answer: 6119881720201216
