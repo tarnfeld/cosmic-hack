@@ -47,6 +47,24 @@
         </div>
     </script>
 
+    <script id="question-maze" type="x-tmpl-mustache">
+        <div class="question">
+        <h2><span class="qnumber">#{{ question_no }}</span> {{ question}}</h2>
+
+        {{#hint}}
+        <div class="hint">
+            <strong>Help!</strong> {{ hint }}
+        </div>
+        {{/hint}}
+
+        <div class="row">
+            <div class="col-md-12" id="maze-container">
+
+            </div>
+        </div>
+    </div>
+    </script>
+
     <script id="question-canvas" type="x-tmpl-mustache">
         <div class="questionnaire-progress">
             <div class="progress progress-striped active">
@@ -57,10 +75,13 @@
         </div>
 
         <div class="question">
-            <h2><span class="qnumber">#01</span> Would you like to pass on any messages to your doctor and nurse?</h2>
+            <h2><span class="qnumber">#{{ question_no }}</span> {{ question}}</h2>
+
+            {{#hint}}
             <div class="hint">
-                <strong>Help!</strong> You can use the white board below to draw a picture or send a message.
+                <strong>Help!</strong> {{ hint }}
             </div>
+            {{/hint}}
 
             <div class="well">
                 <div class="row">

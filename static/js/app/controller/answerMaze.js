@@ -16,6 +16,10 @@ define([
             this.initMaze(jDocument);
         };
 
+        controllerMaze.renderHtml = function() {
+            return $('#answer-maze').html();
+        };
+
         controllerMaze.initMaze = function(jDocument) {
             // @todo hookup endpoints.
             var answers   = ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'];
