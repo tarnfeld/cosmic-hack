@@ -70,10 +70,6 @@
 
                 </div>
             </div>
-
-            <div class="pull-right">
-                <a href="#" class="btn btn-success">Next Question</a>
-            </div>
         </div>
     </script>
 
@@ -152,12 +148,23 @@
             {{/hint}}
 
             <div class="well">
-                <textarea id="text-answer" />
+                <form role="form"><textarea id="text-answer" class="form-control" placeholder="Start typing here..." /></form>
             </div>
 
             <div class="pull-right">
                 <a href="#" class="btn btn-success">Next Question</a>
             </div>
+        </div>
+    </script>
+
+    <script id="demo-template" type="x-tmpl-mustache">
+        <div class="jumbotron welcome">
+            <img src="img/cosmic.png" class="logo" />
+            <h1>Demo</h1>
+            <br />
+            <a href="/?patient=6207356513812480&questionnaire=5071522616049664" class="btn btn-default">Ages Seven to Twelve</a>
+            <a href="/?patient=5752754626625536&questionnaire=5629499534213120" class="btn btn-default">Ages Thirteen to Sixteen</a>
+            <a href="/?patient=4799981630259200&questionnaire=6283097188335616" class="btn btn-default">For Parents</a>
         </div>
     </script>
 

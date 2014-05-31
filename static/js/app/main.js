@@ -8,11 +8,13 @@ define(function (require) {
     location.search.substr(1).split("&").forEach(function(item) {queryDict[item.split("=")[0]] = item.split("=")[1]})
 
     if (!parseInt(queryDict["patient"])) {
-        alert("No partient!");
+        var homeTemplate = $('#demo-template').html();
+        $('#mustache-container').html(mustache.render(homeTemplate, queryDict));
     }
-
-    var homeTemplate = $('#home-template').html();
-    $('#mustache-container').html(mustache.render(homeTemplate, queryDict));
+    else {
+        var homeTemplate = $('#home-template').html();
+        $('#mustache-container').html(mustache.render(homeTemplate, queryDict));
+    }
 
     var questions = [],
         total_qs = 0;
@@ -42,7 +44,7 @@ define(function (require) {
         var $body = $('body');
         require([questionTypeMapping[q["question_type"]]], function(controller) {
             q.question_no = total_qs - questions.length;
-            q.progress = ((total_qs - questions.length - 1) / total_qs) * 100;
+            q.progress = Math.round(((total_qs - questions.length - 1) / total_qs) * 100);
             $('#mustache-container').html(mustache.render($(controller.template).html(), q));
 
 

@@ -18,28 +18,6 @@ define([
             this.submitCallback = submitCallback;
             this.submitURL = submitURL
             this.patientId = patientId
-
-            $("#maze-container").closest(".question").find(".btn").click(function(e) {
-                e.preventDefault();
-                $.ajax({
-                    url: self.submitURL,
-                    type: "PUT",
-                    contentType: "application/json",
-                    data: JSON.stringify({
-                        "patient_id": self.patientId,
-                        "answer_type": "TEXT",
-                        "answer": self.answer
-                    }),
-                    success: function(resp) {
-                        if (resp.status == "ok") {
-                            self.submitCallback();
-                        }
-                    },
-                    error: function() {
-                        alert(":( " + arguments);
-                    }
-                });
-            });
         };
 
         controllerMaze.initMaze = function(jDocument, answers) {
@@ -102,7 +80,24 @@ define([
 
             $(id).parent().find('.win').on('mouseover', function() {
                 if (self.won) {
-                    self.answer = $(id).data("answer");
+                    $.ajax({
+                        url: self.submitURL,
+                        type: "PUT",
+                        contentType: "application/json",
+                        data: JSON.stringify({
+                            "patient_id": self.patientId,
+                            "answer_type": "TEXT",
+                            "answer": $(id).data("answer")
+                        }),
+                        success: function(resp) {
+                            if (resp.status == "ok") {
+                                setTimeout(self.submitCallback, 100);
+                            }
+                        },
+                        error: function() {
+                            alert(":( " + arguments);
+                        }
+                    });
                 }
             });
         };
