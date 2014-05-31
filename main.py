@@ -122,7 +122,16 @@ def questionnaireGET(questionnaire_id):
 	questionnaire = entity_to_dict(questionnaire, enum_map={
 		'age_range': PatientAgeRange
 	})
-	questionnaire['sections'] = map(entity_to_dict, sections)
+	sections = map(entity_to_dict, sections)
+	for section in sections:
+		questions = Question.query(Question.section_id == section['id']).fetch()
+		section['questions'] = map(
+			lambda e: entity_to_dict(e, enum_map={
+				'question_type': QuestionType
+			}),
+			questions
+		)
+	questionnaire['sections'] = sections
 
 	return succesful_response(questionnaire)
 
