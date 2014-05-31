@@ -13,6 +13,7 @@ var Maze = function(doc, elemId) {
 
     self.ctx.strokeStyle = "rgb(0, 0, 0)";
     self.ctx.fillStyle = "rgba(255, 0, 0, 0.1)";
+    self.ctx.lineWidth = 3;
 
     return {
         width: function() {
@@ -33,10 +34,10 @@ var Maze = function(doc, elemId) {
         },
 
         drawBorders: function() {
-            this.drawLine(self.cellWidth, 0, self.width, 0);
-            this.drawLine(self.width, 0, self.width, self.height);
-            this.drawLine(self.width - self.cellWidth, self.height, 0, self.height);
-            this.drawLine(0, self.height, 0, 0);
+            this.drawLine(self.cellWidth, self.ctx.lineWidth / 2, self.width, self.ctx.lineWidth / 2);
+            this.drawLine(self.width - (self.ctx.lineWidth / 2), self.ctx.lineWidth / 2, self.width - (self.ctx.lineWidth / 2), self.height);
+            this.drawLine(self.width - self.cellWidth, self.height - (self.ctx.lineWidth / 2), 0, self.height - (self.ctx.lineWidth / 2));
+            this.drawLine(self.ctx.lineWidth / 2, self.height, self.ctx.lineWidth / 2, 0);
         },
 
         drawMaze: function() {
