@@ -31,6 +31,7 @@ define([
                     '<div class="maze-wrap">' +
                         '<canvas data-answer="' + answer + '" class="maze" id="maze' + mazeIndex + '" width="200" height="200"></canvas>' +
                         '<div class="win"></div>' +
+                        '<div class="start"></div>' +
                     '</div>';
 
                 mazeContainer.append(template);

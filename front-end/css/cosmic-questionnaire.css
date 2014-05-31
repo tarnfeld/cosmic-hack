@@ -142,9 +142,19 @@
 
 .maze-wrap .win {
     position: absolute;
-    right: 3px;
-    bottom: 8px;
-    width: 30px;
-    height: 30px;
+    right: 10px;
+    bottom: 13px;
+    width: 15px;
+    height: 15px;
+    background: green;
+    border-radius: 20px;
+}
+
+.maze-wrap .start {
+    position: absolute;
+    top: 8px;
+    left: 9px;
+    width: 15px;
+    height: 15px;
     background: black;
 }
