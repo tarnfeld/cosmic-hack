@@ -1,12 +1,9 @@
 define(function (require) {
-    var $ = require('jquery'),
-        controller = require('./controller/main'),
-        model = require('./model/main');
-
-    //A fabricated API to show interaction of
-    //common and specific pieces.
-    controller.setModel(model);
-    $(function () {
-        controller.render($(document.body));
+    var $ = require('jquery');
+    var controllerName = $('body').attr('data-controller');
+    require(['./model/' + controllerName, './controller/' + controllerName], function (model, controller) {
+        controller.setModel(model);
+        controller.render();
     });
+
 });
