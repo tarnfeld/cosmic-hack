@@ -36,5 +36,5 @@ class Answer(ndb.Model):
 	question_id = ndb.IntegerProperty(indexed=True, required=True)
 	answered = ndb.DateTimeProperty(auto_now_add=True, required=True)
 	answer_type = msgprop.EnumProperty(AnswerType, required=True)
-	selection = ndb.StringProperty(required=False)
+	answer = ndb.StringProperty(required=False)
 	drawing = ndb.StringProperty(required=False)
