@@ -6,8 +6,13 @@
 //except for 'app' ones, which are in a sibling
 //directory.
 requirejs.config({
-    baseUrl: 'js/lib',
     paths: {
-        app: '../app'
-    }
+        app: './app',
+        bootstrap: '../bower_components/bootstrap/dist/js/bootstrap',
+        jquery: '../bower_components/jquery/dist/jquery',
+        requirejs: '../bower_components/requirejs/require'
+    },
+    packages: [
+
+    ]
 });

@@ -11,6 +11,11 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "bootstrap": "~3.1.1"
+    "bootstrap": "~3.1.1",
+    "requirejs": "~2.1.13",
+    "jquery": "~2.1.1"
+  },
+  "scripts": {
+    "postinstall": "bower-requirejs --config js/config.js --base-url ./js/app"
   }
 }
