@@ -14,6 +14,7 @@ define([
 
         controllerMaze.init = function(jDocument, submitCallback) {
             this.initMaze(jDocument);
+            this.submitCallback = submitCallback;
         };
 
         controllerMaze.renderHtml = function() {
