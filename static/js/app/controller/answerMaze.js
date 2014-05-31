@@ -17,7 +17,7 @@ define([
         };
 
         controllerMaze.renderHtml = function() {
-            return $('#answer-maze').html();
+            return $('#question-maze').html();
         };
 
         controllerMaze.initMaze = function(jDocument) {
