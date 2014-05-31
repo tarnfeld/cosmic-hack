@@ -49,20 +49,24 @@
 
     <script id="question-maze" type="x-tmpl-mustache">
         <div class="question">
-        <h2><span class="qnumber">#{{ question_no }}</span> {{ question}}</h2>
+            <h2><span class="qnumber">#{{ question_no }}</span> {{ question}}</h2>
 
-        {{#hint}}
-        <div class="hint">
-            <strong>Help!</strong> {{ hint }}
-        </div>
-        {{/hint}}
+            {{#hint}}
+            <div class="hint">
+                <strong>Help!</strong> {{ hint }}
+            </div>
+            {{/hint}}
 
-        <div class="row">
-            <div class="col-md-12" id="maze-container">
+            <div class="row">
+                <div class="col-md-12" id="maze-container">
 
+                </div>
+            </div>
+
+            <div class="pull-right">
+                <a href="#" class="btn btn-success">Next Question</a>
             </div>
         </div>
-    </div>
     </script>
 
     <script id="question-canvas" type="x-tmpl-mustache">
