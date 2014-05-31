@@ -6,7 +6,7 @@ define(function (require) {
         'jquery',
         './controller/' + controllerName
     ], function ($, controller) {
-        controller.render($('body'));
+        controller.init($('body'));
     });
 
 });
