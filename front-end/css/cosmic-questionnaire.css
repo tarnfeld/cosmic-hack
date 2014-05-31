@@ -140,6 +140,10 @@
     position: relative;
 }
 
+.maze-wrap .mazedraw {
+    position: absolute;
+}
+
 .maze-wrap .win {
     position: absolute;
     right: 10px;

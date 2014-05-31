@@ -1,13 +1,14 @@
 define([
         './base',
+        '../util/canvas',
         '../../lib/maze/array',
         '../../lib/maze/cell',
         '../../lib/maze/graph',
         '../../lib/maze/maze',
         '../../lib/maze/mazeGenerator',
-        'underscore',
+        'underscore'
     ],
-    function (base) {
+    function (base, PaintCanvas) {
 
         var controllerMaze = new base('Controller Maze');
 
@@ -29,14 +30,18 @@ define([
 
                 var template =
                     '<div class="maze-wrap">' +
-                        '<canvas data-answer="' + answer + '" class="maze" id="maze' + mazeIndex + '" width="200" height="200"></canvas>' +
-                        '<div class="win"></div>' +
                         '<div class="start"></div>' +
+                        '<canvas data-answer="' + answer + '" class="mazedraw" id="mazedraw' + mazeIndex + '" width="200" height="200"></canvas>' +
+                        '<div class="win"></div>' +
+                        '<canvas data-answer="' + answer + '" class="maze" id="maze' + mazeIndex + '" width="200" height="200"></canvas>' +
                     '</div>';
 
                 mazeContainer.append(template);
 
-                var maze = new Maze(document, 'maze' + mazeIndex);
+                var maze = new Maze(document, 'maze' + mazeIndex),
+                    canvas = $("#mazedraw" + mazeIndex);
+
+                PaintCanvas(canvas.get(0));
 
                 maze.generate();
                 maze.draw();
@@ -49,6 +54,7 @@ define([
 
         controllerMaze.registerWinHandler = function(id, answer) {
             $(id).parent().find('.win').on('mouseenter mousedown', function() {
+                alert("fufufu");
                 // @todo hookup endpoint.
             });
         };
