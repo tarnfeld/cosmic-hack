@@ -12,18 +12,15 @@ class AnswerType(messages.Enum):
 	DRAWING = 2
 
 class Questionnaire(ndb.Model):
-	# id = ndb.IntegerProperty(indexed=True)
 	name = ndb.StringProperty(required=True)
 	section_id = ndb.IntegerProperty(indexed=True, repeated=True)
 
 class QuestionSection(ndb.Model):
-	# id = ndb.IntegerProperty(indexed=True)
 	questionnaire_id = ndb.IntegerProperty(indexed=True)
 	label = ndb.StringProperty(required=True)
 	question_id = ndb.IntegerProperty(indexed=True, repeated=True)
 
 class Question(ndb.Model):
-	# id = ndb.IntegerProperty(indexed=True)
 	questionnaire_id = ndb.IntegerProperty(indexed=True)
 	section_id = ndb.IntegerProperty(indexed=True)
 	question_type = msgprop.EnumProperty(QuestionType)
@@ -32,12 +29,11 @@ class Question(ndb.Model):
 	hint_text = ndb.StringProperty(required=False)
 
 class Patient(ndb.Model):
-	# id = ndb.IntegerProperty(indexed=True)
 	age = ndb.IntegerProperty(indexed=True, required=False)
 	ward = ndb.StringProperty(required=False)
+	hospital = ndb.StringProperty(required=False)
 
 class Answer(ndb.Model):
-	# id = ndb.IntegerProperty(indexed=True)
 	patient_id = ndb.IntegerProperty(indexed=True)
 	question_id = ndb.IntegerProperty(indexed=True)
 	answered = ndb.DateTimeProperty(auto_now_add=True)
