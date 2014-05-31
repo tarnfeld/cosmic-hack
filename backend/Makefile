@@ -1,10 +1,10 @@
-all:: lib
-clean:: clean-lib
+ll:: modules
+clean:: clean-modules
 
-lib: requirements.txt
-	-rm -rf lib
-	mkdir -p lib
-	pip install -r requirements.txt -t lib/.
+modules: requirements.txt
+	-rm -rf modules
+	mkdir -p modules
+	pip install -r requirements.txt -t modules/.
 
-clean-lib:
-	-rm -rf lib
+clean-modules:
+	-rm -rf modules
