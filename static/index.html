@@ -34,11 +34,70 @@
         <div class="jumbotron welcome">
                 <img src="img/cosmic.png" class="logo" />
                 <h1>Welcome!</h1>
-                <p class="lead">Hello patient #007, thank you for taking the time to take our feedback questionnaire.</p>
+                <p class="lead">Hello patient #{{ patient }}, thank you for taking the time to take our feedback questionnaire.</p>
                 <br />
                 <br />
-                <a href="#" class="btn btn-success btn-lg">Begin</a>
+                <a href="#" id="start-questions" class="btn btn-success btn-lg">Begin</a>
             </div>
+    </script>
+
+    <script id="thanks-template" type="x-tmpl-mustache">
+        <div class="jumbotron welcome">
+            <h1>Thanks!</h1>
+        </div>
+    </script>
+
+    <script id="question-canvas" type="x-tmpl-mustache">
+        <div class="questionnaire-progress">
+            <div class="progress progress-striped active">
+              <div class="progress-bar progress-bar-success" style="width: 80%;">
+                60%
+              </div>
+            </div>
+        </div>
+
+        <div class="question">
+            <h2><span class="qnumber">#01</span> Would you like to pass on any messages to your doctor and nurse?</h2>
+            <div class="hint">
+                <strong>Help!</strong> You can use the white board below to draw a picture or send a message.
+            </div>
+
+            <div class="well">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="panel panel-default canvas">
+                            <div class="panel-body">
+                                <p class="placeholder">Draw Here</p>
+                                <canvas id="canvas" width="780px" height="403px" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default canvas">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Pick a colour</h3>
+                            </div>
+                            <div class="panel-body">
+                                <ul class="swatches">
+                                    <li><a href="#canvas" class="color-swatch black" data-color="#000000">BLACK</a></li>
+                                    <li><a href="#canvas" class="color-swatch white" data-color="#FFFFFF">WHITE</a></li>
+                                    <li><a href="#canvas" class="color-swatch red" data-color="#DA0002">RED</a></li>
+                                    <li><a href="#canvas" class="color-swatch green" data-color="#01B100">GREEN</a></li>
+                                    <li><a href="#canvas" class="color-swatch blue" data-color="#0040B1">BLUE</a></li>
+                                    <li><a href="#canvas" class="color-swatch yellow" data-color="#E1CE00">YELLOW</a></li>
+                                    <li><a href="#canvas" class="color-swatch purple" data-color="#A100E1">PURPLE</a></li>
+                                    <li><a href="#canvas" class="color-swatch brown" data-color="#853A00">BROWN</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pull-right">
+                <a href="#" class="btn btn-success">Next Question</a>
+            </div>
+        </div>
     </script>
 
 </html>

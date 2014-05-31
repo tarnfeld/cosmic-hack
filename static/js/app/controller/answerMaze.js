@@ -12,7 +12,7 @@ define([
 
         var controllerMaze = new base('Controller Maze');
 
-        controllerMaze.init = function(jDocument) {
+        controllerMaze.init = function(jDocument, submitCallback) {
             this.initMaze(jDocument);
         };
 

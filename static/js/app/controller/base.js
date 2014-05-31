@@ -7,8 +7,11 @@ define(function () {
         setModel: function (model) {
             this.model = model;
         },
-        init: function (bodyDom) {
+        init: function (bodyDom, submitCallback) {
 
+        },
+        renderHtml: function () {
+            
         }
     };
 

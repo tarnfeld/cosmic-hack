@@ -1,7 +1,7 @@
 define(['./base', '../util/canvas'], function (base, PaintCanvas) {
     var controllerCanvas = new base('Controller Canvas');
 
-    controllerCanvas.init = function() {
+    controllerCanvas.init = function(_, submitCallback) {
         var canvas = $("#canvas");
         new PaintCanvas(canvas.get(0));
 
