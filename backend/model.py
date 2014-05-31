@@ -13,12 +13,10 @@ class AnswerType(messages.Enum):
 
 class Questionnaire(ndb.Model):
 	name = ndb.StringProperty(required=True)
-	section_ids = ndb.IntegerProperty(indexed=True, repeated=True)
 
 class QuestionSection(ndb.Model):
 	questionnaire_id = ndb.IntegerProperty(required=True, indexed=True)
 	label = ndb.StringProperty(required=True)
-	question_ids = ndb.IntegerProperty(indexed=True, repeated=True)
 
 class Question(ndb.Model):
 	questionnaire_id = ndb.IntegerProperty(indexed=True, required=True)
