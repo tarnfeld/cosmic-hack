@@ -8,15 +8,21 @@ define([
         'underscore'
     ],
     function (base) {
-    var controllerMaze = new base('Controller Maze');
 
-    controllerMaze.render = function(dom) {
+        var controllerMaze = new base('Controller Maze');
 
-        var maze = new Maze(document, 'maze1');
+        controllerMaze.init = function(dom) {
 
-        maze.generate();
-        maze.draw();
-    };
+            var maze = new Maze(document, 'maze1');
 
-    return controllerMaze;
-});
+            maze.generate();
+            maze.draw();
+        };
+
+        controllerMaze.solution = function() {
+
+        };
+
+        return controllerMaze;
+    }
+);

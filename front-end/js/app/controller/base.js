@@ -7,7 +7,8 @@ define(function () {
         setModel: function (model) {
             this.model = model;
         },
-        render: function (bodyDom) {
+        init: function (bodyDom) {
+
         }
     };
 

@@ -7,7 +7,7 @@ define(function (require) {
         './controller/' + controllerName
     ], function (model, controller) {
         controller.setModel(model);
-        controller.render($('body'));
+        controller.init($('body'));
     });
 
 });
