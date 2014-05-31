@@ -1,0 +1,23 @@
+/**
+ * Container Styles
+ */
+.container {
+    max-width: 1920px;
+}
+
+/**
+ * Header
+ */
+.header {
+
+}
+    .header .pull-right {
+        margin-top: 3px;
+    }
+
+/**
+ * Footer
+ */
+.footer {
+
+}

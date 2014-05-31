@@ -7,10 +7,7 @@ define(function () {
         setModel: function (model) {
             this.model = model;
         },
-
         render: function (bodyDom) {
-            bodyDom.prepend('<h1>Controller ' + this.id + ' says "' +
-                      this.model.getTitle() + '"</h2>');
         }
     };
 
