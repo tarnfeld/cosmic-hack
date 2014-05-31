@@ -21,14 +21,7 @@
                 <h3 class="text-muted"><strong>COSMIC</strong> Feedback Questionnaire</h3>
             </div>
 
-            <div class="jumbotron welcome">
-                <img src="img/cosmic.png" class="logo" />
-                <h1>Welcome!</h1>
-                <p class="lead">Hello patient #007, thank you for taking the time to take our feedback questionnaire.</p>
-                <br />
-                <br />
-                <a href="#" class="btn btn-success btn-lg">Begin</a>
-            </div>
+            <div id="mustache-container"></div>
 
             <div class="footer">
                 <p>&nbsp;</p>
@@ -36,4 +29,16 @@
 
         </div>
     </body>
+
+    <script id="home-template" type="x-tmpl-mustache">
+        <div class="jumbotron welcome">
+                <img src="img/cosmic.png" class="logo" />
+                <h1>Welcome!</h1>
+                <p class="lead">Hello patient #007, thank you for taking the time to take our feedback questionnaire.</p>
+                <br />
+                <br />
+                <a href="#" class="btn btn-success btn-lg">Begin</a>
+            </div>
+    </script>
+
 </html>
