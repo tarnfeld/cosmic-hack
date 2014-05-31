@@ -22,14 +22,17 @@ define([
 
             var mazeContainer = jDocument.find('#maze-container');
 
+            // This generates a maze for each answer and registers a
+            // winning event handler.
             _.each(answers, function(answer) {
-                mazeIndex++;
-
-                mazeContainer.append('<canvas id="maze' + mazeIndex + '" width="200" height="200"></canvas>');
+                mazeContainer.append('<canvas class="maze" id="maze' + mazeIndex + '" width="200" height="200"></canvas>');
 
                 var maze = new Maze(document, 'maze' + mazeIndex);
+
                 maze.generate();
                 maze.draw();
+
+                mazeIndex++;
             });
         };
 

@@ -128,3 +128,12 @@
     .swatches .brown {
         background: #853A00;
     }
+
+
+/**
+ * Maze styling
+ */
+.maze {
+    margin-left: 20px;
+    margin-right: 20px;
+}

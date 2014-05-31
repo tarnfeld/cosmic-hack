@@ -11,7 +11,7 @@ var Maze = function(doc, elemId) {
 
     var self = this;
 
-    self.ctx.strokeStyle = "rgb(0, 0, 0)";
+    self.ctx.strokeStyle = "rgb(226, 55, 141)";
     self.ctx.fillStyle = "rgba(255, 0, 0, 0.1)";
     self.ctx.lineWidth = 3;
 
