@@ -170,12 +170,17 @@ def questionnairePUT():
 
 @app.put('/questionnaire/<questionnaire_id>/section')
 def sectionPUT(questionnaire_id):
-	questionnaire_id = int(questionnaire_id)
-	return succesful_response({
-		"id": 1,
-		"questionnaire_id": questionnaire_id,
-		"label": "some section"
-	})
+	try:
+		return succesful_response(save_entity_from_request_json(
+			QuestionSection,
+			required = ['label'],
+			repeated = ['question_id'],
+			from_url = {
+				'questionnaire_id': int(questionnaire_id)
+			}
+		))
+	except Exception as e:
+		return fail_response(e)
 
 @app.put('/questionnaire/<questionnaire_id>/section/<section_id>/question')
 def questionPUT(questionnaire_id, section_id):
@@ -196,3 +201,4 @@ def questionPUT(questionnaire_id, section_id):
 	
 
 app.run(server='gae')
+
