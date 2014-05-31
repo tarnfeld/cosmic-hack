@@ -58,8 +58,18 @@
     .question .canvas {
         margin: 0;
         padding: 0;
+        position: relative;
     }
         .question .canvas canvas {
+        }
+        .question .canvas .placeholder {
+            width: 100%;
+            font-size: 20px;
+            color: #999;
+            text-align: center;
+            top: 50%;
+            position: absolute;
+            margin: -10px 0 0 -25px;
         }
 
 /**
@@ -70,7 +80,7 @@
     padding: 0 0 0 29px;
 }
     .swatches li {
-        list-style-type: 0;
+        list-style-type: none;
         display: inline-block;
         margin: 5px 0;
     }
