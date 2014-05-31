@@ -12,7 +12,7 @@
         <!-- JS -->
         <script data-main="js/index" src="bower_components/requirejs/require.js"></script>
     </head>
-    <body>
+    <body data-controller="answerCanvas">
         <div class="container">
             <div class="header">
                 <div class="pull-right">
@@ -40,7 +40,8 @@
                         <div class="col-md-9">
                             <div class="panel panel-default canvas">
                                 <div class="panel-body">
-                                    <canvas />
+                                    <p class="placeholder">Draw Here</p>
+                                    <canvas id="canvas" width="780px" height="403px" />
                                 </div>
                             </div>
                         </div>
@@ -51,14 +52,14 @@
                                 </div>
                                 <div class="panel-body">
                                     <ul class="swatches">
-                                        <li><a href="#" class="color-swatch black">BLACK</a></li>
-                                        <li><a href="#" class="color-swatch white">WHITE</a></li>
-                                        <li><a href="#" class="color-swatch red">RED</a></li>
-                                        <li><a href="#" class="color-swatch green">GREEN</a></li>
-                                        <li><a href="#" class="color-swatch blue">BLUE</a></li>
-                                        <li><a href="#" class="color-swatch yellow">YELLOW</a></li>
-                                        <li><a href="#" class="color-swatch purple">PURPLE</a></li>
-                                        <li><a href="#" class="color-swatch brown">BROWN</a></li>
+                                        <li><a href="#canvas" class="color-swatch black" data-color="#000000">BLACK</a></li>
+                                        <li><a href="#canvas" class="color-swatch white" data-color="#FFFFFF">WHITE</a></li>
+                                        <li><a href="#canvas" class="color-swatch red" data-color="#DA0002">RED</a></li>
+                                        <li><a href="#canvas" class="color-swatch green" data-color="#01B100">GREEN</a></li>
+                                        <li><a href="#canvas" class="color-swatch blue" data-color="#0040B1">BLUE</a></li>
+                                        <li><a href="#canvas" class="color-swatch yellow" data-color="#E1CE00">YELLOW</a></li>
+                                        <li><a href="#canvas" class="color-swatch purple" data-color="#A100E1">PURPLE</a></li>
+                                        <li><a href="#canvas" class="color-swatch brown" data-color="#853A00">BROWN</a></li>
                                     </ul>
                                 </div>
                             </div>

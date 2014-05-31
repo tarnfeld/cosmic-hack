@@ -59,6 +59,8 @@
         margin: 0;
         padding: 0;
     }
+        .question .canvas canvas {
+        }
 
 /**
  * Canvas
@@ -70,7 +72,7 @@
     .swatches li {
         list-style-type: 0;
         display: inline-block;
-        margin: 0;
+        margin: 5px 0;
     }
     .swatches .color-swatch {
         width: 80px;
@@ -78,4 +80,41 @@
         background: red;
         display: inline-block;
         border-radius: 40px;
+        border: 2px #FFF solid;
+        box-shadow: 1px 1px 2px #BCBCBC;
+        text-align: center;
+        line-height: 6;
+        font-weight: bold;
+        font-size: 13px;
+        color: #FFFFFF;
+    }
+    .swatches .color-swatch:hover {
+        text-decoration: none;
+    }
+
+    /* Colours */
+    .swatches .black {
+        background: #000;
+    }
+    .swatches .white {
+        background: #FFF;
+        color: #000;
+    }
+    .swatches .red {
+        background: #DA0002;
+    }
+    .swatches .green {
+        background: #01B100;
+    }
+    .swatches .blue {
+        background: #0040B1;
+    }
+    .swatches .yellow {
+        background: #E1CE00;
+    }
+    .swatches .purple {
+        background: #A100E1;
+    }
+    .swatches .brown {
+        background: #853A00;
     }
