@@ -8,11 +8,11 @@
 requirejs.config({
     paths: {
         app: './app',
-        bootstrap: '../../bower_components/bootstrap/dist/js/bootstrap',
-        jquery: '../../bower_components/jquery/dist/jquery',
-        requirejs: '../../bower_components/requirejs/require',
-        easeljs: '../../bower_components/easeljs/lib/easeljs-0.7.1.combined',
-        underscore: '../../bower_components/underscore/underscore'
+        bootstrap: '../bower_components/bootstrap/dist/js/bootstrap',
+        jquery: '../bower_components/jquery/dist/jquery',
+        requirejs: '../bower_components/requirejs/require',
+        easeljs: '../bower_components/easeljs/lib/easeljs-0.7.1.combined',
+        underscore: '../bower_components/underscore/underscore'
     },
     packages: [
 
