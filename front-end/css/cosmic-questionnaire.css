@@ -133,11 +133,18 @@
 /**
  * Maze styling
  */
-.maze-wrap {
+
+.maze-question {
     float: left;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin: 0 42px;
+}
+
+.maze-wrap {
     position: relative;
+}
+
+#maze-container {
+    margin-top: 10px;
 }
 
 .maze-wrap .mazedraw {

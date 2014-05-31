@@ -18,7 +18,7 @@ define([
 
         controllerMaze.initMaze = function(jDocument) {
             // @todo hookup endpoints.
-            var answers   = ['hello', 'world', 'how', 'noob'];
+            var answers   = ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'];
             var mazeIndex = 1;
             var self = this;
 
@@ -29,12 +29,16 @@ define([
             _.each(answers, function(answer) {
 
                 var template =
-                    '<div class="maze-wrap">' +
-                        '<div class="start"></div>' +
-                        '<canvas data-answer="' + answer + '" class="mazedraw" id="mazedraw' + mazeIndex + '" width="200" height="200"></canvas>' +
-                        '<div class="win"></div>' +
-                        '<canvas data-answer="' + answer + '" class="maze" id="maze' + mazeIndex + '" width="200" height="200"></canvas>' +
+                    '<div class="maze-question">' +
+                        '<h3>' + answer + '</h3>' +
+                        '<div class="maze-wrap">' +
+                            '<div class="start"></div>' +
+                            '<canvas data-answer="' + answer + '" class="mazedraw" id="mazedraw' + mazeIndex + '" width="200" height="200"></canvas>' +
+                            '<div class="win"></div>' +
+                            '<canvas data-answer="' + answer + '" class="maze" id="maze' + mazeIndex + '" width="200" height="200"></canvas>' +
+                        '</div>' +
                     '</div>';
+
 
                 mazeContainer.append(template);
 
@@ -53,9 +57,28 @@ define([
         };
 
         controllerMaze.registerWinHandler = function(id, answer) {
-            $(id).parent().find('.win').on('mouseenter mousedown', function() {
-                alert("fufufu");
-                // @todo hookup endpoint.
+            var self = this;
+
+            self.won = false;
+
+            $(id).parent().find('.mazedraw').on('mousedown', function() {
+                self.won = true;
+            });
+
+            $(id).parent().find('.mazedraw').on('mouseup', function() {
+                self.won = false;
+            });
+
+            $(id).parent().find('.mazedraw').on('mouseleave', function() {
+                setTimeout(function() {
+                    self.won = false;
+                }, 1000);
+            });
+
+            $(id).parent().find('.win').on('mouseover', function() {
+                if (self.won) {
+                    alert('won');
+                }
             });
         };
 
