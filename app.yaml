@@ -6,7 +6,7 @@ threadsafe: no
 
 handlers:
 - url: /bower_components/.*
-  static_dir: bower_components
+  static_dir: static/bower_components
 
 - url: /js/.*
   static_dir: static/js
