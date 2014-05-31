@@ -69,7 +69,10 @@ def save_entity_from_request_json(entity_class, required=[], optional=[], repeat
 	key = entity.put()
 	return entity_to_dict(entity, key, enum_map=enum_map)
 
-def entity_to_dict(entity, key, enum_map={}):
+def entity_to_dict(entity, key=None, enum_map={}):
+	if key is None:
+		key = entity.key
+
 	entity = entity.to_dict()
 	entity['id'] = key.integer_id()
 	for key, value in entity.iteritems():
@@ -92,16 +95,7 @@ def patientPUT():
 
 @app.get('/questionnaires')
 def questionnairesGET():
-	return succesful_response([
-		{
-			"id": 1,
-			"name": "Some questionnaire.",
-		},
-		{
-			"id": 2,
-			"name": "Some questionnaire.",
-		},
-	])
+	return succesful_response(map(entity_to_dict, Questionnaire.query().fetch()))
 
 @app.get('/questionnaire/<questionnaire_id>')
 def questionnaireGET(questionnaire_id):
