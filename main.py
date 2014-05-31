@@ -9,7 +9,7 @@ from google.appengine.ext import ndb
 from bottle import request
 import bottle
 from model import Answer, Patient, Questionnaire, QuestionSection, AnswerType, Question, \
-	QuestionType
+	QuestionType, PatientAgeRange
 
 
 def succesful_response(data):
@@ -90,15 +90,23 @@ def patientPUT():
 	try:
 		return succesful_response(save_entity_from_request_json(
 			Patient,
-			required=[],
-			optional=['age', 'ward', 'hospital']
+			required=['age_range'],
+			optional=['ward', 'hospital'],
+			enum_map={
+				'age_range': PatientAgeRange
+			}
 		))
-	except:
-		return fail_response("Error creating patient")
+	except Exception as e:
+		return fail_response("Error creating patient: " + str(e))
 
 @app.get('/questionnaires')
 def questionnairesGET():
-	return succesful_response(map(entity_to_dict, Questionnaire.query().fetch()))
+	return succesful_response(map(
+		lambda e: entity_to_dict(e, enum_map={
+			'age_range': PatientAgeRange
+		}),
+		Questionnaire.query().fetch()
+	))
 
 @app.get('/questionnaire/<questionnaire_id>')
 def questionnaireGET(questionnaire_id):
@@ -111,7 +119,9 @@ def questionnaireGET(questionnaire_id):
 
 	sections = QuestionSection.query(QuestionSection.questionnaire_id == questionnaire.key.integer_id()).fetch()
 
-	questionnaire = entity_to_dict(questionnaire)
+	questionnaire = entity_to_dict(questionnaire, enum_map={
+		'age_range': PatientAgeRange
+	})
 	questionnaire['sections'] = map(entity_to_dict, sections)
 
 	return succesful_response(questionnaire)
@@ -159,7 +169,10 @@ def questionnairePUT():
 	try:
 		return succesful_response(save_entity_from_request_json(
 			Questionnaire,
-			required = ['name']
+			required = ['name', 'age_range'],
+			enum_map = {
+				'age_range': PatientAgeRange
+			}
 		))
 	except Exception as e:
 		return fail_response(e)

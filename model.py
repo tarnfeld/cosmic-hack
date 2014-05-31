@@ -13,8 +13,14 @@ class AnswerType(messages.Enum):
 	TEXT = 1
 	DRAWING = 2
 
+class PatientAgeRange(messages.Enum):
+	SEVEN_TO_TWELVE = 1
+	THIRTEEN_TO_SIXTEEN = 2
+	ADULT = 3
+
 class Questionnaire(ndb.Model):
 	name = ndb.StringProperty(required=True)
+	age_range = msgprop.EnumProperty(PatientAgeRange, required=True)
 
 class QuestionSection(ndb.Model):
 	questionnaire_id = ndb.IntegerProperty(required=True, indexed=True)
@@ -29,7 +35,7 @@ class Question(ndb.Model):
 	hint_text = ndb.StringProperty(required=False)
 
 class Patient(ndb.Model):
-	age = ndb.IntegerProperty(indexed=True, required=False)
+	age_range = msgprop.EnumProperty(PatientAgeRange, required=True)
 	ward = ndb.StringProperty(required=False)
 	hospital = ndb.StringProperty(required=False)
 
