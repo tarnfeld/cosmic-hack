@@ -8,6 +8,18 @@ app = bottle.Bottle()
 
 @app.get('/')
 def homeGET():
-    return "ohai"
+    return "ohasdoifhsdiofhosdifhodisah"
+
+# Test with:
+# curl http://localhost:8080/patient -X PUT
+
+@app.put('/patient')
+def patientPUT():
+    return {
+        "id": 1,
+        "age": 5,
+        "ward": "B"
+    }
+
 
 app.run(server='gae')
