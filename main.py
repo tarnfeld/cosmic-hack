@@ -82,7 +82,7 @@ def entity_to_dict(entity, key=None, enum_map={}):
 		if key in enum_map:
 			entity[key] = value.name
 		if type(value) is datetime:
-			entity[key] = int((mktime(value.timetuple()) + value.microsecond/1000000.0) * 1000.0)
+			entity[key] = int((mktime(value.timetuple()) + value.microsecond / 1000000.0) * 1000.0)
 	return entity
 
 @app.put('/patient')
@@ -110,9 +110,7 @@ def questionnairesGET():
 
 @app.get('/questionnaire/<questionnaire_id>')
 def questionnaireGET(questionnaire_id):
-	questionnaire_id = int(questionnaire_id)
-
-	key = ndb.Key(Questionnaire, questionnaire_id)
+	key = ndb.Key(Questionnaire, int(questionnaire_id))
 	questionnaire = key.get()
 	if questionnaire is None:
 		return fail_response('Questionnaire not found.')
@@ -140,10 +138,10 @@ def answerPUT(question_id):
 	try:
 		return succesful_response(save_entity_from_request_json(
 			Answer,
-			required = ['patient_id', 'answer_type'],
-			optional = ['answer', 'drawing'],
-			enum_map = {'answer_type': AnswerType},
-			from_url = {
+			required=['patient_id', 'answer_type'],
+			optional=['answer', 'drawing'],
+			enum_map={'answer_type': AnswerType},
+			from_url={
 				'question_id': int(question_id)
 			}
 		))
@@ -161,11 +159,11 @@ def answersGET(question_id):
 
 	answers = Answer.query(Answer.question_id == question.key.integer_id()).fetch()
 
-	question = entity_to_dict(question, enum_map = {
+	question = entity_to_dict(question, enum_map={
 		'question_type': QuestionType
 	})
 	question['answers'] = map(
-		lambda e: entity_to_dict(e, enum_map = {
+		lambda e: entity_to_dict(e, enum_map={
 			'answer_type': AnswerType
 		}),
 		answers
@@ -178,8 +176,8 @@ def questionnairePUT():
 	try:
 		return succesful_response(save_entity_from_request_json(
 			Questionnaire,
-			required = ['name', 'age_range'],
-			enum_map = {
+			required=['name', 'age_range'],
+			enum_map={
 				'age_range': PatientAgeRange
 			}
 		))
@@ -191,8 +189,8 @@ def sectionPUT(questionnaire_id):
 	try:
 		return succesful_response(save_entity_from_request_json(
 			QuestionSection,
-			required = ['label'],
-			from_url = {
+			required=['label'],
+			from_url={
 				'questionnaire_id': int(questionnaire_id)
 			}
 		))
@@ -204,14 +202,14 @@ def questionPUT(questionnaire_id, section_id):
 	try:
 		return succesful_response(save_entity_from_request_json(
 			Question,
-			required = ['question', 'question_type'],
-			repeated = ['choices'],
-			optional = ['hint_text'],
-			from_url = {
+			required=['question', 'question_type'],
+			repeated=['choices'],
+			optional=['hint_text'],
+			from_url={
 				'questionnaire_id': int(questionnaire_id),
 				'section_id': int(section_id)
 			},
-			enum_map = {
+			enum_map={
 				'question_type': QuestionType
 			}
 		))
