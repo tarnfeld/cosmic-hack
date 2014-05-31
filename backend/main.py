@@ -67,15 +67,16 @@ def save_entity_from_request_json(entity_class, required=[], optional=[], repeat
 
 	# Save
 	key = entity.put()
+	return entity_to_dict(entity, key, enum_map=enum_map)
+
+def entity_to_dict(entity, key, enum_map={}):
 	entity = entity.to_dict()
 	entity['id'] = key.integer_id()
-
 	for key, value in entity.iteritems():
 		if key in enum_map:
-			entity[key] = value.number
+			entity[key] = value.name
 		if type(value) is datetime:
 			entity[key] = int((mktime(value.timetuple()) + value.microsecond/1000000.0) * 1000.0)
-
 	return entity
 
 @app.put('/patient')
@@ -156,14 +157,14 @@ def answersGET(question_id):
 			}
 		]
 	})
-	
+
 @app.put('/questionnaire')
 def questionnairePUT():
 	try:
 		return succesful_response(save_entity_from_request_json(
 			Questionnaire,
 			required = ['name'],
-			repeated = ['section_id']
+			repeated = ['section_ids']
 		))
 	except Exception as e:
 		return fail_response(e)
@@ -174,7 +175,7 @@ def sectionPUT(questionnaire_id):
 		return succesful_response(save_entity_from_request_json(
 			QuestionSection,
 			required = ['label'],
-			repeated = ['question_id'],
+			repeated = ['question_ids'],
 			from_url = {
 				'questionnaire_id': int(questionnaire_id)
 			}
@@ -184,21 +185,21 @@ def sectionPUT(questionnaire_id):
 
 @app.put('/questionnaire/<questionnaire_id>/section/<section_id>/question')
 def questionPUT(questionnaire_id, section_id):
-	questionnaire_id = int(questionnaire_id)
-	section_id = int(section_id)
-	return succesful_response ({
-		"id": 1,
-		"questionnaire_id": questionnaire_id,
-		"section_id": section_id,
-		"question_type": "CHOICE",
-		"question": "How do you feel?",
-		"hint_text": "Tell me plox.",
-		"choices": [
-			"Meh",
-			"Fine"
-		]
-	})
-	
+	try:
+		return succesful_response(save_entity_from_request_json(
+			Question,
+			required = ['question', 'question_type'],
+			repeated = ['choices'],
+			optional = ['hint_text'],
+			from_url = {
+				'questionnaire_id': int(questionnaire_id),
+				'section_id': int(section_id)
+			},
+			enum_map = {
+				'question_type': QuestionType
+			}
+		))
+	except Exception as e:
+		return fail_response(e)
 
 app.run(server='gae')
-

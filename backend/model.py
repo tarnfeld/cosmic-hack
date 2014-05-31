@@ -13,19 +13,19 @@ class AnswerType(messages.Enum):
 
 class Questionnaire(ndb.Model):
 	name = ndb.StringProperty(required=True)
-	section_id = ndb.IntegerProperty(indexed=True, repeated=True)
+	section_ids = ndb.IntegerProperty(indexed=True, repeated=True)
 
 class QuestionSection(ndb.Model):
-	questionnaire_id = ndb.IntegerProperty(indexed=True)
+	questionnaire_id = ndb.IntegerProperty(required=True, indexed=True)
 	label = ndb.StringProperty(required=True)
-	question_id = ndb.IntegerProperty(indexed=True, repeated=True)
+	question_ids = ndb.IntegerProperty(indexed=True, repeated=True)
 
 class Question(ndb.Model):
-	questionnaire_id = ndb.IntegerProperty(indexed=True)
-	section_id = ndb.IntegerProperty(indexed=True)
-	question_type = msgprop.EnumProperty(QuestionType)
+	questionnaire_id = ndb.IntegerProperty(indexed=True, required=True)
+	section_id = ndb.IntegerProperty(indexed=True, required=True)
+	question_type = msgprop.EnumProperty(QuestionType, required=True)
 	question = ndb.StringProperty(required=True)
-	choice = ndb.StringProperty(required=False, repeated=True)
+	choices = ndb.StringProperty(required=False, repeated=True)
 	hint_text = ndb.StringProperty(required=False)
 
 class Patient(ndb.Model):
@@ -34,9 +34,9 @@ class Patient(ndb.Model):
 	hospital = ndb.StringProperty(required=False)
 
 class Answer(ndb.Model):
-	patient_id = ndb.IntegerProperty(indexed=True)
-	question_id = ndb.IntegerProperty(indexed=True)
-	answered = ndb.DateTimeProperty(auto_now_add=True)
-	answer_type = msgprop.EnumProperty(AnswerType)
+	patient_id = ndb.IntegerProperty(indexed=True, required=True)
+	question_id = ndb.IntegerProperty(indexed=True, required=True)
+	answered = ndb.DateTimeProperty(auto_now_add=True, required=True)
+	answer_type = msgprop.EnumProperty(AnswerType, required=True)
 	selection = ndb.StringProperty(required=False)
 	drawing = ndb.BlobProperty(required=False)
