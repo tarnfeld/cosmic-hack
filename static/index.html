@@ -16,7 +16,7 @@
         <div class="container">
             <div class="header">
                 <div class="pull-right">
-                    <a href="#" class="btn btn-default">Skip</a>
+                    <a href="#" class="btn btn-default hide" id="skip-question">Skip</a>
                 </div>
                 <h3 class="text-muted"><strong>COSMIC</strong> Feedback Questionnaire</h3>
             </div>
@@ -48,6 +48,14 @@
     </script>
 
     <script id="question-maze" type="x-tmpl-mustache">
+        <div class="questionnaire-progress">
+            <div class="progress progress-striped active">
+              <div class="progress-bar progress-bar-success" style="width: {{ progress }}%;">
+                {{ progress }}%
+              </div>
+            </div>
+        </div>
+
         <div class="question">
             <h2><span class="qnumber">#{{ question_no }}</span> {{ question}}</h2>
 
@@ -72,8 +80,8 @@
     <script id="question-canvas" type="x-tmpl-mustache">
         <div class="questionnaire-progress">
             <div class="progress progress-striped active">
-              <div class="progress-bar progress-bar-success" style="width: 80%;">
-                60%
+              <div class="progress-bar progress-bar-success" style="width: {{ progress }}%;">
+                {{ progress }}%
               </div>
             </div>
         </div>
@@ -117,6 +125,34 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="pull-right">
+                <a href="#" class="btn btn-success">Next Question</a>
+            </div>
+        </div>
+    </script>
+
+    <script id="question-text" type="x-tmpl-mustache">
+        <div class="questionnaire-progress">
+            <div class="progress progress-striped active">
+              <div class="progress-bar progress-bar-success" style="width: {{ progress }}%;">
+                {{ progress }}%
+              </div>
+            </div>
+        </div>
+
+        <div class="question">
+            <h2><span class="qnumber">#{{ question_no }}</span> {{ question}}</h2>
+
+            {{#hint}}
+            <div class="hint">
+                <strong>Help!</strong> {{ hint }}
+            </div>
+            {{/hint}}
+
+            <div class="well">
+                <textarea id="text-answer" />
             </div>
 
             <div class="pull-right">

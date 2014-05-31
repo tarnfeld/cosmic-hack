@@ -17,6 +17,16 @@ define(function (require) {
     var questions = [],
         total_qs = 0;
 
+    function forceNextQ() {
+        if (questions.length > 0) {
+            nextQuestion(questions.shift());
+        } else {
+            $("#skip-question").hide();
+            var homeTemplate = $('#thanks-template').html();
+            $('#mustache-container').html(mustache.render(homeTemplate, queryDict));
+        }
+    }
+
     function nextQuestion(q) {
         var questionTypeMapping = {
             "CHOICE": "./controller/answerMaze",
@@ -32,19 +42,21 @@ define(function (require) {
         var $body = $('body');
         require([questionTypeMapping[q["question_type"]]], function(controller) {
             q.question_no = total_qs - questions.length;
+            q.progress = ((total_qs - questions.length - 1) / total_qs) * 100;
             $('#mustache-container').html(mustache.render($(controller.template).html(), q));
+
 
             submitURL = "/question/" + q.id + "/answer";
             controller.init($body, submitURL, parseInt(queryDict["patient"]), function() {
-                if (questions.length > 0) {
-                    nextQuestion(questions.shift());
-                } else {
-                    var homeTemplate = $('#thanks-template').html();
-                    $('#mustache-container').html(mustache.render(homeTemplate, queryDict));
-                }
-            });
+                forceNextQ();
+            }, q);
         });
     }
+
+    $("#skip-question").click(function(e) {
+        e.preventDefault();
+        forceNextQ();
+    })
 
     require(["jquery"], function($) {
         $(function() {
@@ -65,6 +77,8 @@ define(function (require) {
 
                     total_qs = questions.length;
                     nextQuestion(questions.shift());
+
+                    $("#skip-question").toggleClass("hide");
                 });
             });
         });

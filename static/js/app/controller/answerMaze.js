@@ -12,14 +12,38 @@ define([
 
         var controllerMaze = new base("#question-maze");
 
-        controllerMaze.init = function(jDocument, submitCallback) {
-            this.initMaze(jDocument);
+        controllerMaze.init = function(jDocument, submitURL, patientId, submitCallback, question) {
+            var self = this;
+            this.initMaze(jDocument, question.choices);
             this.submitCallback = submitCallback;
+            this.submitURL = submitURL
+            this.patientId = patientId
+
+            $("#maze-container").closest(".question").find(".btn").click(function(e) {
+                e.preventDefault();
+                $.ajax({
+                    url: self.submitURL,
+                    type: "PUT",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        "patient_id": self.patientId,
+                        "answer_type": "TEXT",
+                        "answer": self.answer
+                    }),
+                    success: function(resp) {
+                        if (resp.status == "ok") {
+                            self.submitCallback();
+                        }
+                    },
+                    error: function() {
+                        alert(":( " + arguments);
+                    }
+                });
+            });
         };
 
-        controllerMaze.initMaze = function(jDocument) {
+        controllerMaze.initMaze = function(jDocument, answers) {
             // @todo hookup endpoints.
-            var answers   = ['Answer 1', 'Answer 2', 'Answer 3', 'Answer 4'];
             var mazeIndex = 1;
             var self = this;
 
@@ -78,7 +102,7 @@ define([
 
             $(id).parent().find('.win').on('mouseover', function() {
                 if (self.won) {
-                    alert('won');
+                    self.answer = $(id).data("answer");
                 }
             });
         };
