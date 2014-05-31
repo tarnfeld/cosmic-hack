@@ -162,3 +162,16 @@
     height: 15px;
     background: black;
 }
+
+/**
+ * Welcome
+ */
+.welcome {
+}
+    .welcome .logo {
+        margin: 0 0 40px 0;
+    }
+    .welcome h1 {
+        color: #E2378D;
+        font-weight: bold;
+    }
