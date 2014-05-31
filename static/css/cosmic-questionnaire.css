@@ -1,0 +1,184 @@
+/**
+ * Container Styles
+ */
+.container {
+    max-width: 1920px;
+}
+
+/**
+ * Header
+ */
+.header {
+
+}
+    .header .pull-right {
+        margin-top: 3px;
+    }
+
+/**
+ * Footer
+ */
+.footer {
+    margin-top: 30px;
+}
+
+/**
+ * Questionnaire
+ */
+
+.questionnaire-progress {
+    margin: 30px 0;
+}
+    .questionnaire-progress .progress,
+    .questionnaire-progress .progress-bar {
+        height: 40px;
+        font-size: 20px;
+        line-height: 1.9;
+        font-weight: bold;
+    }
+    .questionnaire-progress .progress-bar {
+        background-color: #E2378D;
+    }
+
+.question {
+    margin-top: 40px;
+}
+    .question .qnumber {
+        font-weight: bold;
+        color: #E2378D;
+    }
+    .question .hint {
+        padding: 0 0 10px 60px;
+        font-size: 16px;
+        color: #999;
+    }
+    .question .well {
+        margin-top: 10px;
+    }
+    .question .canvas {
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+        .question .canvas canvas {
+        }
+        .question .canvas .placeholder {
+            width: 100%;
+            font-size: 20px;
+            color: #999;
+            text-align: center;
+            top: 50%;
+            position: absolute;
+            margin: -10px 0 0 -25px;
+        }
+
+/**
+ * Canvas
+ */
+
+.swatches {
+    padding: 0 0 0 29px;
+}
+    .swatches li {
+        list-style-type: none;
+        display: inline-block;
+        margin: 5px 0;
+    }
+    .swatches .color-swatch {
+        width: 80px;
+        height: 80px;
+        background: red;
+        display: inline-block;
+        border-radius: 40px;
+        border: 2px #FFF solid;
+        box-shadow: 1px 1px 2px #BCBCBC;
+        text-align: center;
+        line-height: 6;
+        font-weight: bold;
+        font-size: 13px;
+        color: #FFFFFF;
+    }
+    .swatches .color-swatch:hover {
+        text-decoration: none;
+    }
+
+    /* Colours */
+    .swatches .black {
+        background: #000;
+    }
+    .swatches .white {
+        background: #FFF;
+        color: #000;
+    }
+    .swatches .red {
+        background: #DA0002;
+    }
+    .swatches .green {
+        background: #01B100;
+    }
+    .swatches .blue {
+        background: #0040B1;
+    }
+    .swatches .yellow {
+        background: #E1CE00;
+    }
+    .swatches .purple {
+        background: #A100E1;
+    }
+    .swatches .brown {
+        background: #853A00;
+    }
+
+
+/**
+ * Maze styling
+ */
+
+.maze-question {
+    float: left;
+    margin: 0 42px;
+}
+
+.maze-wrap {
+    position: relative;
+}
+
+#maze-container {
+    margin-top: 10px;
+}
+
+.maze-wrap .mazedraw {
+    position: absolute;
+}
+
+.maze-wrap .win {
+    position: absolute;
+    right: 10px;
+    bottom: 13px;
+    width: 15px;
+    height: 15px;
+    background: #3c2d61;
+    border-radius: 20px;
+}
+
+.maze-wrap .start {
+    position: absolute;
+    top: 8px;
+    left: 9px;
+    width: 15px;
+    height: 15px;
+    background: #3c2d61;
+}
+
+/**
+ * Welcome
+ */
+.welcome {
+}
+    .welcome .logo {
+        margin: 0 0 40px 0;
+    }
+    .welcome h1 {
+        color: #E2378D;
+        font-weight: bold;
+    }

@@ -1,0 +1,22 @@
+{
+  "name": "cosmichack",
+  "version": "0.0.1",
+  "homepage": "https://github.com/tarnfeld/cosmic-hack",
+  "authors": [
+    "Mat Davies <thepixeldeveloper@gmail.com>",
+    "Tom Arnfeld <tarnfeld@me.com>"
+  ],
+  "description": "Things",
+  "main": "js/index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "requirejs": "~2.1.13",
+    "jquery": "~2.1.1",
+    "underscore": "~1.6.0"
+  },
+  "scripts": {
+    "postinstall": "bower-requirejs --config js/config.js --base-url ./js"
+  }
+}
